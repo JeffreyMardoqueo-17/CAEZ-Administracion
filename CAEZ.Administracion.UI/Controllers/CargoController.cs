@@ -23,7 +23,7 @@ namespace CAEZ.Administracion.UI.Controllers
         }
 
         // GET: CargoController/Details/5
-        public async Task<ActionResult> DetailsPartial(int id)
+        public async Task<ActionResult> Details(int id)
         {
             var cargo = await _cargoBL.GetById(new Cargo { Id = id });
             return PartialView("Details", cargo);

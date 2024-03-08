@@ -18,7 +18,7 @@ namespace CAEZ.Administracion.UI.Controllers
         }
 
         // GET: GradoController/Details/5
-        public async Task<ActionResult> DetailsPartial(int id)
+        public async Task<ActionResult> Details(int id)
         {
             var grado = await _gradoBL.GetById(new Grado { Id = id });
             return PartialView("Details", grado);

@@ -8,12 +8,10 @@ namespace CAEZ.Administracion.UI.Controllers
     public class CargoController : Controller
     {
         private readonly CargoBL _cargoBL;
-
         public CargoController()
         {
             _cargoBL = new CargoBL(); // Inicializamos la capa de negocio
         }
-
         // GET: CargoController
         public async Task<ActionResult> Index()
         {

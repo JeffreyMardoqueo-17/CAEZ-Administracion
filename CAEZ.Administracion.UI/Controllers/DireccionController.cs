@@ -23,7 +23,7 @@ namespace CAEZ.Administracion.UI.Controllers
         }
 
         // GET: DireccionController/Details/5
-        public async Task<ActionResult> DetailsPartial(int id)
+        public async Task<ActionResult> Details(int id)
         {
             var direccion = await _direcBD.GetById(new Direccion { Id = id });
             return PartialView("Details", direccion);

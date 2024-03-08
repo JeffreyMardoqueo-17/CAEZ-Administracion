@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CAEZ.Administracion.UI</title>
+    <title>@ViewData["Title"]CAEZ</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CAEZ.Administracion.UI.styles.css" asp-append-version="true" />
@@ -71,8 +71,8 @@
     @* SIDEBAR *@
         @* <!-- drawer component --> *@
     <div id="drawer-navigation"
-        class="border-r-purple-900 border-2 fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto bg-white dark:bg-gray-800 transform -translate-x-full transition-transform ease-in-out duration-300 flex flex-col"
-        tabindex="-1" aria-labelledby="drawer-navigation-label">
+         class="border-r-purple-900 border-2 rounded-tr-lg rounded-br-lg fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto bg-white dark:bg-gray-800 transform -translate-x-full transition-transform ease-in-out duration-300 flex flex-col"
+         tabindex="-1" aria-labelledby="drawer-navigation-label">
         <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu
         </h5>
         <button type="button" data-drawer-hide="drawer-navigation" aria-controls="drawer-navigation"
@@ -92,7 +92,7 @@
                 <nav class="space-y-3">
                     <!-- home -->
 
-                    <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-purple-900 hover:bg-purple-100"
+                    <a class="flex items-center no-underline px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-purple-900 hover:bg-purple-100"
                        asp-area="" asp-controller="Home" asp-action="Index">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="w-5 h-5">
@@ -104,7 +104,7 @@
                     </a>
 
                     @* CARGOOO *@
-                    <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-purple-900 hover:bg-purple-100"
+                    <a class="flex items-center no-underline px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-purple-900 hover:bg-purple-100"
                        asp-area="" asp-controller="Cargo" asp-action="Index">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-gear w-5 h-5" viewBox="0 0 16 16">
                             <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m.256 7a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1zm3.63-4.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382zM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0" />
@@ -113,37 +113,6 @@
                         <span class="mx-2 text-sm font-medium">Cargo</span>
                     </a>
 
-
-
-                @* <!-- SECCION DE PROYECTOS --> *@
-                <div>
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-base font-semibold text-gray-800 dark:text-white">Projects</h2>
-
-                        <button
-                            class="p-0.5 hover:bg-purple-600 hover:text-white duration-200 transition-colors text-gray-500 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 border rounded-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                            </svg>
-                        </button>
-                    </div>
-
-                    <nav class="mt-4 space-y-3">
-                        <button
-                            class="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200  hover:text-purple-900 hover:bg-purple-100">
-                            <div class="flex items-center gap-x-2">
-                                <span class="w-2 h-2 bg-green-600 rounded-full"></span>
-                                <span>Exposicion del medio ambiente</span>
-                            </div>
-
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-4 h-4 rtl:rotate-180">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                            </svg>
-                        </button>
-                    </nav>
-                </div>
             </div>
         </div>
     </div>

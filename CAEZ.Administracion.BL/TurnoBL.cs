@@ -10,25 +10,25 @@ namespace CAEZ.Administracion.BL
 {
     public class TurnoBL
     {
-        public async Task<int> CreateAsync(Direccion direccion)
+        public async Task<int> CreateAsync(Turno turno)
         {
-            return await DireccionDAL.CreateAsync(direccion);
+            return await TurnoDAL.CreateAsync(turno);
         }
-        public async Task<int> UpdateAsync(Direccion direccion)
+        public async Task<int> UpdateAsync(Turno turno)
         {
-            return await DireccionDAL.UpdateAsync(direccion);
+            return await TurnoDAL.UpdateAsync(turno);
         }
-        public async Task<int> DeleteAsync(Direccion direccion)
+        public async Task<int> DeleteAsync(Turno turno)
         {
-            return await DireccionDAL.DeleteAsync(direccion);
+            return await TurnoDAL.DeleteAsync(turno);
         }
-        public async Task<Direccion> GetById(Direccion direccion)
+        public async Task<Turno> GetById(Turno turno)
         {
-            return await DireccionDAL.GetByIdAsync(direccion);
+            return await TurnoDAL.GetByIdAsync(turno);
         }
-        public async Task<List<Direccion>> GetAllAsync()
+        public async Task<List<Turno>> GetAllAsync()
         {
-            return await DireccionDAL.GetAllAsync();
+            return await TurnoDAL.GetAllAsync();
         }
     }
 }

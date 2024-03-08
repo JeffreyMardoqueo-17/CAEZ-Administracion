@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CAEZ.Administracion.EN
 {
-    internal class Pago
+    public class Pago
     {
     }
 }

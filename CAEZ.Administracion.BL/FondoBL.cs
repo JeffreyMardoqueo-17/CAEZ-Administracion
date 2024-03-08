@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CAEZ.Administracion.EN
+namespace CAEZ.Administracion.BL
 {
-    public class Factura
+    internal class FondoBL
     {
     }
 }

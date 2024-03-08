@@ -19,14 +19,12 @@ namespace GestordeTareas.DAL
         public DbSet<Parentezco> Parentezco { get; set; }
         public DbSet<TipoDocumento> TipoDocumento { get; set; }
         public DbSet<TipoPago> TipoPago { get; set; }
-        public DbSet<Administrador> Administrador { get; set; }
-        public DbSet<Alumno> Alumno { get; set; }
-        public DbSet<Encargado> Encargado { get; set; }
-        public DbSet<Factura> Factura { get; set; }
-        public DbSet<Pago> Pago { get; set; }
+        //public DbSet<Administrador> Administrador { get; set; }
+        //public DbSet<Alumno> Alumno { get; set; }
+        //public DbSet<Encargado> Encargado { get; set; }
+        //public DbSet<Factura> Factura { get; set; }
+        //public DbSet<Pago> Pago { get; set; }
         public DbSet<Turno> Turno { get; set; }
-
-
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

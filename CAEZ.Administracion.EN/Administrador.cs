@@ -8,5 +8,6 @@ namespace CAEZ.Administracion.EN
 {
     public class Administrador
     {
+        //
     }
 }

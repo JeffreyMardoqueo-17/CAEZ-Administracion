@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CAEZ.Administracion.EN
 {
-    internal class Factura
+    public class Factura
     {
     }
 }

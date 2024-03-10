@@ -1,7 +1,9 @@
 ﻿using CAEZ.Administracion.BL;
 using CAEZ.Administracion.EN;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CAEZ.Administracion.UI.Controllers
 {
@@ -9,28 +11,28 @@ namespace CAEZ.Administracion.UI.Controllers
     {
         private readonly GradoBL _gradoBL;
 
-        // GET: GradoController
-          public async Task<ActionResult> Index()
+        public GradoController()
+        {
+            _gradoBL = new GradoBL(); // Inicializamos la capa de negocio
+        }
+
+        public async Task<ActionResult> Index()
         {
             List<Grado> Lista = await _gradoBL.GetAllAsync();
-
             return View(Lista);
         }
 
-        // GET: GradoController/Details/5
         public async Task<ActionResult> Details(int id)
         {
             var grado = await _gradoBL.GetById(new Grado { Id = id });
             return PartialView("Details", grado);
         }
 
-        // GET: GradoController/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView("Create");
         }
 
-        // POST: GradoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Grado grado)
@@ -47,15 +49,12 @@ namespace CAEZ.Administracion.UI.Controllers
             }
         }
 
-        // GET: GradoController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
             var grado = await _gradoBL.GetById(new Grado { Id = id });
             return PartialView("Edit", grado);
         }
 
-
-        // POST: GradoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(int id, Grado grado)
@@ -72,28 +71,26 @@ namespace CAEZ.Administracion.UI.Controllers
             }
         }
 
-        // GET: GradoController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var grado = await _gradoBL.GetById(new Grado { Id = id });
+            return PartialView("Delete", grado);
         }
 
-        // POST: GradoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, Grado grado)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
             try
             {
-                await _gradoBL.DeleteAsync(grado);
+                await _gradoBL.DeleteAsync(new Grado { Id = id });
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View(grado);
+                return View(id);
             }
         }
     }
-    
 }

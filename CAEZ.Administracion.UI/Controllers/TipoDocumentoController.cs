@@ -8,6 +8,10 @@ namespace CAEZ.Administracion.UI.Controllers
     public class TipoDocumentoController : Controller
     {
         private readonly TipoDocumentoBL _tdocumentBL;
+        public TipoDocumentoController()
+        {
+            _tdocumentBL = new TipoDocumentoBL(); // Inicializamos la capa de negocio
+        }
         // GET: TipoDocumentoController
         public async Task<ActionResult> Index()
         {

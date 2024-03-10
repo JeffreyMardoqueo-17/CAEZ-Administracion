@@ -1,79 +1,81 @@
 ﻿using CAEZ.Administracion.EN;
 using GestordeTareas.DAL;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace CAEZ.Administracion.DAL
 {
     public class GradoDAL
     {
-        //--------------------------------METODO CREAR CARGO.--------------------------
+        //--------------------------------METODO CREAR GRADO.--------------------------
         public static async Task<int> CreateAsync(Grado grado)
         {
             int result = 0;
-            using (var dbContexto = new ContextoBD()) //el comando using hace un proceso de ejecucion
+            using (var dbContexto = new ContextoBD())
             {
-                dbContexto.Grado.Add(grado); //agrego un nuevo cargo
-                result = await dbContexto.SaveChangesAsync();//se guarda a la base de datos
+                dbContexto.Grado.Add(grado);
+                result = await dbContexto.SaveChangesAsync();
             }
             return result;
         }
-        //--------------------------------METODO MODIFICAR cargo.--------------------------
+
+        //--------------------------------METODO MODIFICAR GRADO.--------------------------
         public static async Task<int> UpdateAsync(Grado grado)
         {
             int result = 0;
-            using (var bdContexto = new ContextoBD())//hago una instancia de la base de datos
+            using (var bdContexto = new ContextoBD())
             {
-                //expresion landam
-                var gradoBD = await bdContexto.Grado.FirstOrDefaultAsync(c => c.Id == grado.Id); //lo busco 
-                if (gradoBD != null)//verifico que no este nulo
+                var gradoBD = await bdContexto.Grado.FirstOrDefaultAsync(c => c.Id == grado.Id);
+                if (gradoBD != null)
                 {
-                    gradoBD.Nombre = grado.Nombre; //actualizo las propiedades
-                    bdContexto.Update(gradoBD); //se guarda en memora
-                    result = await bdContexto.SaveChangesAsync(); //guardo en la base de datos con SaveChangesAsync
+                    gradoBD.Nombre = grado.Nombre;
+                    bdContexto.Update(gradoBD);
+                    result = await bdContexto.SaveChangesAsync();
                 }
             }
             return result;
         }
-        //--------------------------------METODO ELIMINAR gradp.--------------------------
+
+        //--------------------------------METODO ELIMINAR GRADO.--------------------------
         public static async Task<int> DeleteAsync(Grado grado)
         {
             int result = 0;
-            using (var bdContexto = new ContextoBD()) //istancio la coneccion
+            using (var bdContexto = new ContextoBD())
             {
-                var gradoBD = await bdContexto.Grado.FirstOrDefaultAsync(c => c.Id == grado.Id); //busco el id
-                if (gradoBD != null)//verifico que no este nulo
+                var gradoBD = await bdContexto.Grado.FirstOrDefaultAsync(c => c.Id == grado.Id);
+                if (gradoBD != null)
                 {
-                    bdContexto.Grado.Remove(gradoBD);//elimino anivel de memoria la categoria
-                    result = await bdContexto.SaveChangesAsync();//le digo a la BD que se elimine y se guarde
+                    bdContexto.Grado.Remove(gradoBD);
+                    result = await bdContexto.SaveChangesAsync();
                 }
             }
             return result;
         }
-        //--------------------------------METODO obtenerporID grado.--------------------------
+
+        //--------------------------------METODO obtener por ID GRADO.--------------------------
         public static async Task<Grado> GetByIdAsync(Grado grado)
         {
             var gradoBD = new Grado();
             using (var bdContexto = new ContextoBD())
             {
-                gradoBD = await bdContexto.Grado.FirstOrDefaultAsync(c => c.Id == grado.Id); //busco el id y asigno el resultado a cargoBD
+                gradoBD = await bdContexto.Grado.FirstOrDefaultAsync(c => c.Id == grado.Id);
             }
             return gradoBD;
         }
 
-        //--------------------------------METODO obtener todas las gados.--------------------------
+        //--------------------------------METODO obtener todas los GRADOS.--------------------------
         public static async Task<List<Grado>> GetAllAsync()
         {
-            var cgrado = new List<Grado>(); //una variable de lo que llevara una lista
-            using (var bdContexto = new ContextoBD()) //creo el acceso a la BD
+            var grados = new List<Grado>();
+            using (var bdContexto = new ContextoBD())
             {
-                cgrado = await bdContexto.Grado.ToListAsync(); //le digo que categories contenga la lista de categorias, osea lo de l BD
+                grados = await bdContexto.Grado.ToListAsync();
             }
-            return cgrado;
+            return grados;
         }
     }
 }

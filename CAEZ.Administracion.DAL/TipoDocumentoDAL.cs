@@ -1,10 +1,10 @@
-﻿using CAEZ.Administracion.EN;
-using GestordeTareas.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CAEZ.Administracion.EN;
+using GestordeTareas.DAL;
 using Microsoft.EntityFrameworkCore;
 
 namespace CAEZ.Administracion.DAL
@@ -43,7 +43,7 @@ namespace CAEZ.Administracion.DAL
             using (var bdContexto = new ContextoBD()) //istancio la coneccion
             {
                 var tdocumentBD = await bdContexto.TipoDocumento.FirstOrDefaultAsync(c => c.Id == tdocument.Id); //busco el id
-                if (tdocument != null)//verifico que no este nulo
+                if (tdocumentBD != null)//verifico que no este nulo
                 {
                     bdContexto.TipoDocumento.Remove(tdocumentBD);//elimino anivel de memoria la categoria
                     result = await bdContexto.SaveChangesAsync();//le digo a la BD que se elimine y se guarde
@@ -56,7 +56,7 @@ namespace CAEZ.Administracion.DAL
             var tdocumentBD = new TipoDocumento();
             using (var bdContexto = new ContextoBD())
             {
-                tdocument = await bdContexto.TipoDocumento.FirstOrDefaultAsync(c => c.Id == tdocument.Id); //busco el id y asigno el resultado a cargoBD
+                tdocumentBD = await bdContexto.TipoDocumento.FirstOrDefaultAsync(c => c.Id == tdocument.Id); //busco el id y asigno el resultado a cargoBD
             }
             return tdocumentBD;
         }

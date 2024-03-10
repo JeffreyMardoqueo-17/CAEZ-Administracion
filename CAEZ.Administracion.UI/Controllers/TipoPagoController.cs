@@ -1,36 +1,38 @@
 ﻿using CAEZ.Administracion.BL;
 using CAEZ.Administracion.EN;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CAEZ.Administracion.UI.Controllers
 {
     public class TipoPagoController : Controller
     {
         private readonly TipoPagoBL _tpagoBL;
-        // GET: TipoPagoController
+
+        public TipoPagoController()
+        {
+            _tpagoBL = new TipoPagoBL(); // Inicializamos la capa de negocio
+        }
+
         public async Task<ActionResult> Index()
         {
             List<TipoPago> Lista = await _tpagoBL.GetAllAsync();
-
             return View(Lista);
         }
 
-        // GET: TipoPagoController/Details/5
         public async Task<ActionResult> Details(int id)
         {
             var tpago = await _tpagoBL.GetById(new TipoPago { Id = id });
             return PartialView("Details", tpago);
         }
 
-
-        // GET: TipoPagoController/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView("Create");
         }
 
-        // POST: TipoPagoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(TipoPago tipopago)
@@ -47,15 +49,12 @@ namespace CAEZ.Administracion.UI.Controllers
             }
         }
 
-
-        // GET: TipoPagoController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
             var tpago = await _tpagoBL.GetById(new TipoPago { Id = id });
             return PartialView("Edit", tpago);
         }
 
-        // POST: TipoPagoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(int id, TipoPago tipoPago)
@@ -72,13 +71,12 @@ namespace CAEZ.Administracion.UI.Controllers
             }
         }
 
-        // GET: TipoPagoController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var tpago = await _tpagoBL.GetById(new TipoPago { Id = id });
+            return PartialView("Delete", tpago);
         }
 
-        // POST: TipoPagoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id, TipoPago tpago)

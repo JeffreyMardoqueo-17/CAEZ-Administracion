@@ -1,40 +1,38 @@
 ﻿using CAEZ.Administracion.BL;
 using CAEZ.Administracion.EN;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CAEZ.Administracion.UI.Controllers
 {
     public class TipoDocumentoController : Controller
     {
         private readonly TipoDocumentoBL _tdocumentBL;
+
         public TipoDocumentoController()
         {
             _tdocumentBL = new TipoDocumentoBL(); // Inicializamos la capa de negocio
         }
-        // GET: TipoDocumentoController
+
         public async Task<ActionResult> Index()
         {
             List<TipoDocumento> Lista = await _tdocumentBL.GetAllAsync();
-
             return View(Lista);
         }
 
-        // GET: TipoDocumentoController/Details/5
         public async Task<ActionResult> Details(int id)
         {
             var tdocument = await _tdocumentBL.GetById(new TipoDocumento { Id = id });
             return PartialView("Details", tdocument);
         }
 
-
-        // GET: TipoDocumentoController/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView("Create");
         }
 
-        // POST: TipoDocumentoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(TipoDocumento tipoDocumento)
@@ -51,38 +49,34 @@ namespace CAEZ.Administracion.UI.Controllers
             }
         }
 
-        // GET: TipoDocumentoController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
             var tdocumento = await _tdocumentBL.GetById(new TipoDocumento { Id = id });
             return PartialView("Edit", tdocumento);
         }
 
-
-        // POST: TipoDocumentoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, TipoDocumento tipodocumet)
+        public async Task<ActionResult> Edit(int id, TipoDocumento tipodocumento)
         {
             try
             {
-                int result = await _tdocumentBL.UpdateAsync(tipodocumet);
+                int result = await _tdocumentBL.UpdateAsync(tipodocumento);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View(tipodocumet);
+                return View(tipodocumento);
             }
         }
 
-        // GET: TipoDocumentoController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var tdocument = await _tdocumentBL.GetById(new TipoDocumento { Id = id });
+            return PartialView("Delete", tdocument);
         }
 
-        // POST: TipoDocumentoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id, TipoDocumento tdocumento)

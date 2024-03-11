@@ -1,7 +1,9 @@
 ﻿using CAEZ.Administracion.BL;
 using CAEZ.Administracion.EN;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CAEZ.Administracion.UI.Controllers
 {
@@ -9,28 +11,28 @@ namespace CAEZ.Administracion.UI.Controllers
     {
         private readonly TurnoBL _turnoBL;
 
-        // GET: CargoController
+        public TurnoController()
+        {
+            _turnoBL = new TurnoBL(); // Inicializamos la capa de negocio
+        }
+
         public async Task<ActionResult> Index()
         {
             List<Turno> Lista = await _turnoBL.GetAllAsync();
-
             return View(Lista);
         }
 
-        // GET: CargoController/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            var cargo = await _turnoBL.GetById(new Turno { Id = id });
-            return PartialView("Details", cargo);
+            var turno = await _turnoBL.GetById(new Turno { Id = id });
+            return PartialView("Details", turno);
         }
 
-        // GET: CargoController/Create
         public ActionResult Create()
         {
             return PartialView("Create");
         }
 
-        // POST: CargoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Turno turno)
@@ -47,14 +49,12 @@ namespace CAEZ.Administracion.UI.Controllers
             }
         }
 
-        // GET: CargoController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
             var turno = await _turnoBL.GetById(new Turno { Id = id });
             return PartialView("Edit", turno);
         }
 
-        // POST: CargoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(int id, Turno turno)
@@ -71,15 +71,12 @@ namespace CAEZ.Administracion.UI.Controllers
             }
         }
 
-        // GET: CargoController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
             var turno = await _turnoBL.GetById(new Turno { Id = id });
             return PartialView("Delete", turno);
-
         }
 
-        // POST: CargoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id, Turno turno)

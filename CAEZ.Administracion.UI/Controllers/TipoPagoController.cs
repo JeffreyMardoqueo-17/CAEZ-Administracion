@@ -48,7 +48,7 @@ namespace CAEZ.Administracion.UI.Controllers
                 return PartialView("Create", tipopago);
             }
         }
-
+        [HttpPost]
         public async Task<ActionResult> Edit(int id)
         {
             var tpago = await _tpagoBL.GetById(new TipoPago { Id = id });
@@ -71,6 +71,8 @@ namespace CAEZ.Administracion.UI.Controllers
             }
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id)
         {
             var tpago = await _tpagoBL.GetById(new TipoPago { Id = id });

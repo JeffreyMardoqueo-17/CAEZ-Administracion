@@ -51,15 +51,17 @@ namespace CAEZ.Administracion.DAL
             }
             return result;
         }
+
         public static async Task<TipoPago> GetByIdAsync(TipoPago tpago)
         {
-            var tpagosBD = new TipoPago();
+            var tpagoBD = new TipoPago();
             using (var bdContexto = new ContextoBD())
             {
-                tpago = await bdContexto.TipoPago.FirstOrDefaultAsync(c => c.Id == tpago.Id); //busco el id y asigno el resultado a cargoBD
+                tpagoBD = await bdContexto.TipoPago.FirstOrDefaultAsync(c => c.Id == tpago.Id); //busco el id y asigno el resultado a cargoBD
             }
-            return tpagosBD;
+            return tpagoBD;
         }
+
 
         public static async Task<List<TipoPago>> GetAllAsync()
         {

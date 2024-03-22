@@ -4,9 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CAEZ.Administracion.UI.Controllers
 {
+
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Administrador")]
     public class TipoDocumentoController : Controller
     {
         private readonly TipoDocumentoBL _tdocumentBL;

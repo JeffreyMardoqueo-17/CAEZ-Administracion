@@ -12,14 +12,14 @@ namespace GestordeTareas.DAL
 {
     public class ContextoBD : DbContext
     {
-        public DbSet<Cargo> Cargo { get; set; }
+        public DbSet<Role> Role { get; set; }
         public DbSet<Direccion> Direccion { get; set; }
         public DbSet<Grado> Grado { get; set; }
         public DbSet<Mes> Mes { get; set; }
         public DbSet<Parentezco> Parentezco { get; set; }
         public DbSet<TipoDocumento> TipoDocumento { get; set; }
         public DbSet<TipoPago> TipoPago { get; set; }
-        public DbSet<Administrador> Administrador { get; set; }
+        public DbSet<User> User { get; set; }
         //public DbSet<Alumno> Alumno { get; set; }
         //public DbSet<Encargado> Encargado { get; set; }
         //public DbSet<Factura> Factura { get; set; }

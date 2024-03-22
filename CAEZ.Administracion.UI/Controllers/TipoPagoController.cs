@@ -1,12 +1,18 @@
 ﻿using CAEZ.Administracion.BL;
 using CAEZ.Administracion.EN;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+
 namespace CAEZ.Administracion.UI.Controllers
 {
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Administrador")]
     public class TipoPagoController : Controller
     {
         private readonly TipoPagoBL _tpagoBL;

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using CAEZ.Administracion.BL;
+using CAEZ.Administracion.EN;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using CAEZ.Administracion.BL;
-using CAEZ.Administracion.EN;
-using Microsoft.AspNetCore.Mvc;
 
 namespace CAEZ.Administracion.UI.Controllers
 {
@@ -18,21 +18,20 @@ namespace CAEZ.Administracion.UI.Controllers
             _encargadoBL = new EncargadoBL();
         }
 
-        // GET: EncargadoController
+        // GET: Encargado/Index
         public async Task<ActionResult> Index()
         {
-            List<Encargado> listaEncargados = await EncargadoBL.GetAllAsync();
-
+            List<Encargado> listaEncargados = await _encargadoBL.ObtenerTodosLosEncargadosAsync();
             return View(listaEncargados);
         }
 
-        // GET: EncargadoController/Create
+        // GET: Encargado/Crear
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: EncargadoController/Create
+        // POST: Encargado/Crear
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Encargado encargado)
@@ -43,10 +42,9 @@ namespace CAEZ.Administracion.UI.Controllers
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
                 // Asignar el Id del usuario logueado al encargado
-                encargado.IdAdministrador = Convert.ToInt32(userId);
-                encargado.FechaRegistro = DateTime.Now;
+                encargado.IdAdministrador = int.Parse(userId);
 
-                int result = await EncargadoBL.CreateAsync(encargado);
+                int resultado = await _encargadoBL.CrearEncargadoAsync(encargado);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -56,21 +54,21 @@ namespace CAEZ.Administracion.UI.Controllers
             }
         }
 
-        // GET: EncargadoController/Edit/5
+        // GET: Encargado/Editar/5
         public async Task<ActionResult> Edit(int id)
         {
-            var encargado = await EncargadoBL.GetByIdAsync(new Encargado { Id = id });
+            Encargado encargado = await _encargadoBL.ObtenerEncargadoPorIdAsync(id);
             return View(encargado);
         }
 
-        // POST: EncargadoController/Edit/5
+        // POST: Encargado/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(int id, Encargado encargado)
         {
             try
             {
-                int result = await EncargadoBL.UpdateAsync(encargado);
+                int resultado = await _encargadoBL.ActualizarEncargadoAsync(encargado);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -80,21 +78,21 @@ namespace CAEZ.Administracion.UI.Controllers
             }
         }
 
-        // GET: EncargadoController/Delete/5
+        // GET: Encargado/Eliminar/5
         public async Task<ActionResult> Delete(int id)
         {
-            var encargado = await EncargadoBL.GetByIdAsync(new Encargado { Id = id });
+            Encargado encargado = await _encargadoBL.ObtenerEncargadoPorIdAsync(id);
             return View(encargado);
         }
 
-        // POST: EncargadoController/Delete/5
+        // POST: Encargado/Eliminar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id, Encargado encargado)
         {
             try
             {
-                int result = await EncargadoBL.DeleteAsync(encargado);
+                int resultado = await _encargadoBL.EliminarEncargadoAsync(encargado);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)

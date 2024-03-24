@@ -1,5 +1,6 @@
-﻿using CAEZ.Administracion.DAL;
-using CAEZ.Administracion.EN;
+﻿using CAEZ.Administracion.EN;
+using GestordeTareas.DAL;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,34 +8,70 @@ namespace CAEZ.Administracion.BL
 {
     public class EncargadoBL
     {
-        public static async Task<int> CreateAsync(Encargado encargado)
+        public static async Task<int> CrearEncargadoAsync(Encargado encargado)
         {
-            return await EncargadoDAL.CreateAsync(encargado);
+            try
+            {
+                return await EncargadoDAL.CreateAsync(encargado);
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones, registro de errores, etc.
+                throw;
+            }
         }
 
-        public static async Task<int> UpdateAsync(Encargado encargado)
+        public static async Task<int> ActualizarEncargadoAsync(Encargado encargado)
         {
-            return await EncargadoDAL.UpdateAsync(encargado);
+            try
+            {
+                return await EncargadoDAL.UpdateAsync(encargado);
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones, registro de errores, etc.
+                throw;
+            }
         }
 
-        public static async Task<int> DeleteAsync(Encargado encargado)
+        public static async Task<int> EliminarEncargadoAsync(Encargado encargado)
         {
-            return await EncargadoDAL.DeleteAsync(encargado);
+            try
+            {
+                return await EncargadoDAL.DeleteAsync(encargado);
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones, registro de errores, etc.
+                throw;
+            }
         }
 
-        public static async Task<Encargado> GetByIdAsync(Encargado encargado)
+        public static async Task<Encargado> ObtenerEncargadoPorIdAsync(int id)
         {
-            return await EncargadoDAL.GetByIdAsync(encargado);
+            try
+            {
+                Encargado encargado = new Encargado { Id = id };
+                return await EncargadoDAL.GetByIdAsync(encargado);
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones, registro de errores, etc.
+                throw;
+            }
         }
 
-        public static async Task<List<Encargado>> GetAllAsync()
+        public static async Task<List<Encargado>> ObtenerTodosLosEncargadosAsync()
         {
-            return await EncargadoDAL.GetAllAsync();
-        }
-
-        public static async Task<List<Encargado>> SearchAsync(string searchCriteria)
-        {
-            return await EncargadoDAL.SearchAsync(searchCriteria);
+            try
+            {
+                return await EncargadoDAL.GetAllAsync();
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones, registro de errores, etc.
+                throw;
+            }
         }
     }
 }

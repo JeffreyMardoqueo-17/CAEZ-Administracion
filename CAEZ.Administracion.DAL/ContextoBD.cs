@@ -21,7 +21,7 @@ namespace GestordeTareas.DAL
         public DbSet<TipoPago> TipoPago { get; set; }
         public DbSet<User> User { get; set; }
         //public DbSet<Alumno> Alumno { get; set; }
-        //public DbSet<Encargado> Encargado { get; set; }
+        public DbSet<Encargado> Encargado { get; set; }
         //public DbSet<Factura> Factura { get; set; }
         //public DbSet<Pago> Pago { get; set; }
         public DbSet<Turno> Turno { get; set; }
